@@ -16,6 +16,8 @@ jobs:
       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       AWS_DEFAULT_REGION: 'us-east-1'
     steps:
+        - name: Job Summary
+          run: echo "Generating attestation for ${VERSION} in ${BUCKET}"
         - name: Download checksums
           run: |
             aws s3 cp s3://${S3_BUCKET}/${VERSION}/checksums.txt .
