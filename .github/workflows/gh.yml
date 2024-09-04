@@ -10,7 +10,7 @@ jobs:
   verify_and_codesign:
     runs-on: ubuntu-latest
     env:
-      S3_BUCKET: "qbt-builds/qbt-kme"
+      S3_BUCKET: "qbt-releases/qbt-kme"
       VERSION: ${{ github.event.client_payload.version }}
       AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
