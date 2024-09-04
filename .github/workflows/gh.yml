@@ -23,7 +23,7 @@ jobs:
             aws s3 cp s3://${S3_BUCKET}/${VERSION}/checksums.txt .
             aws s3 cp s3://${S3_BUCKET}/${VERSION}/checksums.txt.sig .
         - name: Verify checksums
-          run: aws kms verify --key-id alias/build-artifact-signing-key
+          run: aws kms verify --key-id alias/github-gitlab-sigstore-bridge
                --message-type RAW
                --signing-algorithm ECDSA_SHA_512
                --message fileb://checksums.txt
