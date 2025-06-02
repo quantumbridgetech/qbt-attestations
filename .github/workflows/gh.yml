@@ -5,13 +5,13 @@ permissions:
   id-token: write
   contents: read
   attestations: write
-  
+
 jobs:
   verify_and_codesign:
     runs-on: ubuntu-latest
     env:
-      S3_BUCKET: "qbt-releases/qbt-kme"
       VERSION: ${{ github.event.client_payload.version }}
+      S3_BUCKET: ${{ format('qbt-releases/{0}', github.event.client_payload.application || 'qbt-kme') }}
       AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       AWS_DEFAULT_REGION: 'us-east-1'
@@ -33,5 +33,3 @@ jobs:
           uses: actions/attest-build-provenance@v1
           with:
             subject-path: 'checksums.txt'
-  
-
